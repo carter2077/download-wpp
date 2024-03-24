@@ -39,14 +39,16 @@ for e in embeds:
     url = e.get_attribute("src")
     # open the source in a new tab
     driver.switch_to.new_window('tab')
-    print(url)
+    print("Downloading {}...".format(url))
     driver.get(url)
     # click the download button, close the window
+    # probably not waiting the correct way here
     driver.implicitly_wait(0.5)
     dl_btn = driver.find_element(by=By.ID, value="download-player")
     dl_btn.click()
     driver.implicitly_wait(1)
     driver.close()
+    driver.implicitly_wait(0.5)
     driver.switch_to.window(original_window)
-
+    driver.implicitly_wait(0.5)
 
